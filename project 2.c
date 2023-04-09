@@ -40,7 +40,32 @@ int Log_in() {
             if (strcmp(user.username, username) == 0 && strcmp(user.password, password) == 0) {
                printf("Login successful!\n");
                fclose(fp);
-               menu();
+               printf("\nWelcome to the system!\n");
+            char choice;
+            printf("\nWhat would you like to do?\n");
+            printf("1. View profile\n");
+            printf("2. Log out\n");
+            printf("3. Cast Vote\n");
+            printf("Enter your choice (1-3): ");
+            scanf(" %c", &choice);
+
+            switch (choice) {
+                case '1':
+                    printf("\nHere is your profile:\n");
+                    printf("Username: %s\t", username);
+                    printf("Password: %s", password);
+                    break;
+                case '2':
+                    printf("\nLogging out...\n");
+                     // mark user as logged out
+                    break;
+                case'3':
+                    Vote_posi();
+                    break;
+                default:
+                    printf("\nInvalid choice. Please try again.\n");
+                    break;
+            }
                break;
             }
          }
@@ -64,76 +89,53 @@ int Log_in() {
          fclose(fp);
 
          printf("Registration successful!\n");
-         login();
+        //  login();
          
       } else if (choice == 'Q' || choice == 'q') {
          break;
       } else {
          printf("Invalid choice. Please try again.\n");
+         break;
       }
    }
    return 0;
 }
-int login(){
-    FILE *fp;
-    struct User user;
-    char username[50], password[50];
-         printf("Enter username: ");
-         scanf("%s", username);
-         printf("Enter password: ");
-         scanf("%s", password);
-
-         fp = fopen("users.txt", "r");
-         while (fread(&user, sizeof(struct User), 1, fp)) {
-            if (strcmp(user.username, username) == 0 && strcmp(user.password, password) == 0) {
-               printf("Login successful!\n");
-               fclose(fp);
-               menu();
-               break;
-            }
-         }
-            if (!feof(fp)) {
-                printf("Invalid username or password. Please try again.\n");
-
-            }  
-         fclose(fp);
-        return 0;
-      } 
-      
 int menu() {
     // Write C code here
-    printf("\nWelcome to the system!\n");
-    char choice;
+   
+    // printf("\nWelcome to the system!\n");
+    // char choice;
 
-            printf("\nWhat would you like to do?\n");
-            printf("1. View profile\n");
-            printf("2. Edit profile\n");
-            printf("3. Log out\n");
-            printf("4. Cast Vote\n");
-            printf("Enter your choice (1-4): ");
-            scanf(" %c", &choice);
+    //         printf("\nWhat would you like to do?\n");
+    //         printf("1. View profile\n");
+    //         printf("2. Edit profile\n");
+    //         printf("3. Log out\n");
+    //         printf("4. Cast Vote\n");
+    //         printf("Enter your choice (1-4): ");
+    //         scanf(" %c", &choice);
 
-            switch (choice) {
-                case '1':
-                    printf("\nHere is your profile:\n");
-                    printf("Username: %s", username);
-                    printf("Password: %s", password);
-                    break;
-                case '2':
-                    printf("\nPlease enter your new password: ");
-                    fflush(stdin);
-                    fgets(password, 50, stdin);
-                    break;
-                case '3':
-                    printf("\nLogging out...\n");
-                     // mark user as logged out
-                    break;
-                case'4':
-                    Vote_posi();
-                default:
-                    printf("\nInvalid choice. Please try again.\n");
-                    break;
-            }
+    //         switch (choice) {
+    //             case '1':
+    //                 printf("\nHere is your profile:\n");
+    //                 printf("Username: %s", username);
+    //                 printf("Password: %s", password);
+    //                 break;
+    //             case '2':
+    //                 printf("\nPlease enter your new password: ");
+    //                 fflush(stdin);
+    //                 fgets(password, 50, stdin);
+    //                 break;
+    //             case '3':
+    //                 printf("\nLogging out...\n");
+    //                  // mark user as logged out
+    //                 break;
+    //             case'4':
+    //                 Vote_posi();
+    //                 break;
+    //             default:
+    //                 printf("\nInvalid choice. Please try again.\n");
+    //                 break;
+    //         }
         
 
     return 0;
